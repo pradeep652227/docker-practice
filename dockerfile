@@ -14,7 +14,7 @@ COPY . .
 ENV DATABASE_URL="postgresql://postgres:docker-practice@localhost:5432/postgres"
 
 RUN npx prisma generate
-RUN npx prisma migrate deploy 
+RUN npx prisma migrate deploy  # optional
 
 # Build the app
 RUN npm run build
