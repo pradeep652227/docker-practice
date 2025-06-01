@@ -14,10 +14,12 @@
 ## Docker Installation
 - Clone the repo
 - Install Docker
+- Create network `docker network create user_project_netw`
+- Create volume `docker volume create user_project_vol`
 - start postgres
-    - docker run -e POSTGRES_PASSWORD=youpassword -d -p 5432:5432 postgres
-- Build the image `docker build -t user-project`
-- Start the image `docker run -p 3000:3000 user-project`
+    - docker run --network user_project_netw --name postgres -v user_project_vol:/var/lib/postgresql/data -e POSTGRES_PASSWORD=docker-practice -d -p 5432:5432 postgres
+- Build the image `docker build --network=host -t user-project .`
+- Start the image `docker run -e DATABASE_URL=postgresql://postgres:docker-practice@postgres:5432/postgres --network user_project_netw -p 3000:3001 user-project`
 
 ## Docker Compose Installation
 - Clone the repo
