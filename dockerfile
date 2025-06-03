@@ -11,10 +11,10 @@ RUN npm install
 COPY . .
 
 # (Optional for testing only) Environment variable
-ENV DATABASE_URL="postgresql://postgres:docker-practice@localhost:5432/postgres"
+# ENV DATABASE_URL="postgresql://postgres:docker-practice@postgresql:5432/postgres"
 
 RUN npx prisma generate
-RUN npx prisma migrate deploy  # optional
+# RUN npx prisma migrate deploy  # optional
 
 # Build the app
 RUN npm run build
@@ -22,4 +22,4 @@ RUN npm run build
 EXPOSE 3001
 
 # Start the app
-CMD ["npm", "start"]
+CMD ["npm","run", "dev:docker"]
